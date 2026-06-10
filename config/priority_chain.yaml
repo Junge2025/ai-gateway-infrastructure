@@ -1,0 +1,13 @@
+# 军鸽云链 AI 网关 - 优先级链配置
+priority_chains:
+  default:
+    - {name: ollama_local, cost: 0, timeout: 30}
+    - {name: github_models, cost: 0, timeout: 20}
+    - {name: gemini_flash, cost: 0, timeout: 15}
+    - {name: deepseek, cost: 0.001, timeout: 10}
+    - {name: openrouter, cost: 0.002, timeout: 15}
+    - {name: apiporter, cost: 0.005, timeout: 15}
+    - {name: openai, cost: 0.01, timeout: 15}
+budget:
+  monthly_limit: 300
+  alert_threshold: 0.8
