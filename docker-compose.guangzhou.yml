@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  router:
+    build:
+      context: .
+      dockerfile: Dockerfile.router
+    ports:
+      - "8081:8081"
+    env_file: .env
+    volumes:
+      - ./health:/app/health
+      - ./config:/app/config
+    restart: unless-stopped
+
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+
+  health-check:
+    build:
+      context: .
+      dockerfile: Dockerfile.health
+    env_file: .env
+    volumes:
+      - ./health:/app/health
+    restart: unless-stopped
