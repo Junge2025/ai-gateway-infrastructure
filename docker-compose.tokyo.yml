@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/models.conf:/etc/nginx/conf.d/models.conf:ro
+    restart: unless-stopped
+
+  router:
+    build:
+      context: .
+      dockerfile: Dockerfile.router
+    ports:
+      - "8081:8081"
+    env_file: .env
+    volumes:
+      - ./health:/app/health
+    restart: unless-stopped
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
