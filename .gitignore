@@ -1,0 +1,4 @@
+.env
+health/health_matrix.json
+__pycache__/
+*.pyc
